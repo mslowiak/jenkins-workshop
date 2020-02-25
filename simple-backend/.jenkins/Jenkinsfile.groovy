@@ -10,5 +10,11 @@ pipeline {
                 sh "ls -la"
             }
         }
+        stage('Stage two') {
+            steps {
+                sh "cd simple-backend/"
+                sh "mvn clean install"
+            }
+        }
     }
 }
