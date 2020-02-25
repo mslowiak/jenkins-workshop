@@ -12,8 +12,10 @@ pipeline {
 		}
 		stage('maven install'){
 			steps{
-				sh "cd .."
-				sh "maven clean install"
+				dir('simple-backend'){
+					sh "maven clean install"
+				}
+				
 			}
 		}
 	}
