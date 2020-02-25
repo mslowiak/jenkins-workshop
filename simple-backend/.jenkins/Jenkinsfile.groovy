@@ -7,7 +7,9 @@ pipeline {
     stages {
         stage('ECHO ALL FILE NAMES') {
             steps {
-                sh "ls -al"
+                dir ('simple-backend') {
+                    sh 'mvn clean install'
+                }
             }
         }
     }
