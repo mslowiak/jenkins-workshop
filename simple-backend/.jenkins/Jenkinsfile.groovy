@@ -8,8 +8,7 @@ pipeline {
         stage('STAGE NAME') {
             steps {
                 sh 'ls -a'
-                sh 'cd simple-backend'
-                sh 'mvn clean install'
+                sh 'cd simple-backend && mvn clean install'
             }
         }
     }
