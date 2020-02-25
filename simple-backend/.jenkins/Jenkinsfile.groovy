@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'adoptopenjdk/maven-openjdk11'
+        }
+    }
     stages {
         stage('Stage one') {
             steps {
