@@ -24,23 +24,49 @@ pipeline {
         }
     }
     stages {
-        stage('mvn clean install') {
+        stage('Install') {
             steps {
-                dir ('simple-backend') {
+                dir('simple-backend') {
                     sh 'mvn clean install'
                 }
             }
         }
-        stage('run') {
+        stage('Run') {
             steps {
-                dir ('simple-backend/target') {
+                dir('simple-backend/target') {
                     sh """
                         java -jar app.jar \
                         --spring.profiles.active=$params.PROFILE \
                         --productName=$params.PRODUCT_NAME
                     """
+                }
+            }
+        }
+        stage('Deploy') {
+            when {
+                expression {
+                    return params.PROFILE == 'other'
+                }
+                steps {
+                    dir('simple-backend/target') {
+                        sh """
+                            java -jar app.jar \
+                            --spring.profiles.active=$params.PROFILE \
+                            --productName=$params.PRODUCT_NAME \
+                            --salesforce.username=$USERNAME \
+                            --salesforce.password=$PASSWORD \
+                            --salesforce.clientId=$CLIENT_ID \
+                            --salesforce.clientSecret=$CLIENT_SECRET \
+                        """
+                    }
+                }
+            }
+            steps {
+                dir('simple-backend/target') {
                     sh """
-                        echo $USERNAME
+                        java -jar app.jar \
+                        --spring.profiles.active=$params.PROFILE \
+                        --productName=$params.PRODUCT_NAME
                     """
                 }
             }
