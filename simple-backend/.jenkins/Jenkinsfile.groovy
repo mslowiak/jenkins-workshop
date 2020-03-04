@@ -13,6 +13,7 @@ pipeline {
     }
     parameters {
         string(name: 'PRODUCT_NAME', defaultValue: 'Mr Jenkins', description: 'Product Name')
+        string(name: 'URL', defaultValue: 'https://sabre--tncommdp3.cs8.my.salesforce.com/services', description: 'URL')
         choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: 'Pick something')
     }
     stages {
