@@ -1,6 +1,6 @@
 pipeline {
 	parameters{
-		choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: '')
+		choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: '')
 		string(name: 'PRODUCT_NAME', defaultValue: 'staging', description: '')
 	}
 	environment{
@@ -29,10 +29,10 @@ pipeline {
 				}
 			}
 		}
-		stage('java run'){
+		stage('java run '){
 			when{
 				expression {
-					$params.PROFILE != 'other'
+					$params.PROFILE != 'custom'
 				}
 			}
 			steps{
@@ -41,10 +41,10 @@ pipeline {
 				}
 			}
 		}
-		stage('java run other than other'){
+		stage('java run custom'){
 			when{
 				expression {
-					$params.PROFILE == 'other'
+					$params.PROFILE == 'custom'
 				}
 			}
 			steps{
