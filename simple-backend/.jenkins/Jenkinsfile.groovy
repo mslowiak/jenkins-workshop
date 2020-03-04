@@ -4,7 +4,7 @@ pipeline {
 		string(name: 'PRODUCT_NAME', defaultValue: 'staging', description: '')
 	}
 	environment{
-		ENV_NAME = credentials('ENV_NAME')
+		PASSWORD = credentials('PASSWORD')
 		USERNAME = credentials('USERNAME')
 		CLIENT_SECRET = credentials('CLIENT_SECRET')
 		CLIENT_ID = credentials('CLIENT_ID')
