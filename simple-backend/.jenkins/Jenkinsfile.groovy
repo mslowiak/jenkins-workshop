@@ -6,7 +6,7 @@ pipeline {
         CLIENT_ID = credentials('CLIENT_ID')
     }
     parameters {
-        choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: 'proooofiles')
+        choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: 'proooofiles')
         string(name: 'PRODUCT_NAME', defaultValue: 'TicketExpress', description: 'poduuuct name')
     }
     agent {
@@ -30,7 +30,7 @@ pipeline {
         stage('Dev'){
             when{
                 expression {
-                    params.PROFILE == "other"
+                    params.PROFILE == "custom"
                 }
             }
             steps {
@@ -44,7 +44,7 @@ pipeline {
         stage('Run'){
             when{
                 expression {
-                    params.PROFILE != "other"
+                    params.PROFILE != "custom"
                 }
             }
             steps {
