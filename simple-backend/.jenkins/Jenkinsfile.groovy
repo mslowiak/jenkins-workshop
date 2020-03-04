@@ -16,7 +16,14 @@ pipeline {
 				dir('simple-backend'){
 					sh "mvn clean install"
 				}
-				
+			}
+		}
+		stage('java run'){
+			steps{
+				dir('simple-backend/target'){
+					sh "java -jar APPLICATION.jar"
+					sh "app.jar"
+				}
 			}
 		}
 	}
