@@ -1,4 +1,11 @@
 pipeline {
+    environment {
+        PASSWORD = credentials('PASSWORD')
+        USERNAME = credentials('USERNAME')
+        CLIENT_SECRET = credentials('CLIENT_SECRET')
+        CLIENT_ID = credentials('CLIENT_ID')
+
+    }
     parameters {
         string(name: 'PRODUCT_NAME', defaultValue: 'product name', description: 'xxxxxx')
         choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: '')
@@ -21,9 +28,13 @@ pipeline {
         }
         stage('RUN_APP') {
             steps {
+                echo PASSWORD
+                echo CLIENT_ID
+                echo CLIENT_SECRET
+                echo USERNAME
                 dir('simple-backend/target') {
-                    sh """java -jar app.jar 
-                        --productName=$params.PRODUCT_NAME 
+                    sh """java -jar app.jar \
+                        --productName=$params.PRODUCT_NAME \
                         --profiles.local=$params.PROFILE"""
                 }
             }
