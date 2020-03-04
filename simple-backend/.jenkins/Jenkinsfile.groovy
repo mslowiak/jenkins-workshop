@@ -30,9 +30,32 @@ pipeline {
 			}
 		}
 		stage('java run'){
+			when{
+				expression {
+					$params.PROFILE != 'other'
+				}
+			}
 			steps{
 				dir('simple-backend/target'){
 					sh "java -jar app.jar --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME"
+				}
+			}
+		}
+		stage('java run'){
+			when{
+				expression {
+					$params.PROFILE == 'other'
+				}
+			}
+			steps{
+				dir('simple-backend/target'){
+					sh "java -jar app.jar \
+					--spring.profiles.active=$params.PROFILE \
+					--productName=$params.PRODUCT_NAME \
+					--username=$USERNAME \
+					--password=$PASSWORD \
+					--clientId=$CLIENT_ID \
+					--clientSecret=$CLIENT_SECRET"
 				}
 			}
 		}
