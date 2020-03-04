@@ -1,7 +1,15 @@
 pipeline {
     parameters {
-        choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: '')
-        string(name: 'PRODUCT_NAME', defaultValue: 'product_', description: '')
+        choice(
+                name: 'PROFILE',
+                choices: ['local', 'dev', 'other'],
+                description: ''
+        )
+        string(
+                name: 'PRODUCT_NAME',
+                defaultValue: 'product',
+                description: ''
+        )
     }
     agent {
         docker {
@@ -17,10 +25,12 @@ pipeline {
                 }
             }
         }
-        stage('java -jar') {
+        stage('run') {
             steps {
                 dir ('simple-backend/target') {
-                    sh 'java -jar app.jar'
+                    sh """java -jar app.jar /
+                                            --spring.profiles.active=$params.PROFILE /
+                                            --productName=$params.PRODUCT_NAME"""
                 }
             }
         }
