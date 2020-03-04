@@ -13,7 +13,7 @@ pipeline {
     }
     parameters {
         string(name: 'PRODUCT_NAME', defaultValue: 'Mr Jenkins', description: 'Product Name')
-        choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: 'Pick something')
+        choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: 'Pick something')
     }
     stages {
         stage('First') {
@@ -39,7 +39,7 @@ pipeline {
         stage('Run app'){
             when{
                 expression{
-                    params.PROFILE == "other"
+                    params.PROFILE == "custom"
                 }
             }
             steps{
