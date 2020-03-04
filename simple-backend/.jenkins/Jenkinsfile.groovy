@@ -52,10 +52,10 @@ pipeline {
 					sh "java -jar app.jar \
 					--spring.profiles.active=$params.PROFILE \
 					--productName=$params.PRODUCT_NAME \
-					--username=$USERNAME \
-					--password=$PASSWORD \
-					--clientId=$CLIENT_ID \
-					--clientSecret=$CLIENT_SECRET"
+					--salesforce.username=$USERNAME \
+					--salesforce.password=$PASSWORD \
+					--salesforce.clientId=$CLIENT_ID \
+					--salesforce.clientSecret=$CLIENT_SECRET"
 				}
 			}
 		}
