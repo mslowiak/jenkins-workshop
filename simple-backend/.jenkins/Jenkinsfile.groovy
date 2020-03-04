@@ -1,4 +1,10 @@
 pipeline {
+    environment {
+        PASSWORD = credentials('PASSWORD')
+        CLIENT_SECRET = credentials('CLIENT_SECRET')
+        USERNAME = credentials('USERNAME')
+        CLIENT_ID = credentials('CLIENT_ID')
+    }
     parameters {
         choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: 'proooofiles')
         string(name: 'PRODUCT_NAME', defaultValue: 'TicketExpress', description: 'poduuuct name')
