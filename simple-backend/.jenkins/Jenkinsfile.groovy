@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy'){
             when {
                 expression {
-                    $params.PROFILE == 'other'
+                    params.PROFILE == 'other'
                 }
             }
             steps{
