@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-        string(name: 'PRODUCT_NAME', defaultValue: 'staging', description: '')
+        string(name: 'PRODUCT_NAME', defaultValue: 'product name', description: 'xxxxxx')
         choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: '')
 
     }
@@ -22,7 +22,9 @@ pipeline {
         stage('RUN_APP') {
             steps {
                 dir('simple-backend/target') {
-                    sh "java -jar app.jar"
+                    sh """java -jar app.jar 
+                        --productName=$params.PRODUCT_NAME 
+                        --profiles.local=$params.PROFILE"""
                 }
             }
         }
