@@ -2,6 +2,7 @@ pipeline {
 	parameters{
 		choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: '')
 		string(name: 'PRODUCT_NAME', defaultValue: 'staging', description: '')
+		string(name: 'URI', defaultValue: 'https://sabre--tncommdp3.cs8.my.salesforce.com/services')
 	}
 	environment{
 		PASSWORD = credentials('PASSWORD')
@@ -10,6 +11,7 @@ pipeline {
 		CLIENT_ID = credentials('CLIENT_ID')
 
 	}
+
 	agent {
 		docker{
 			image 'adoptopenjdk/maven-openjdk11'
@@ -55,7 +57,8 @@ pipeline {
 					--salesforce.username=$USERNAME \
 					--salesforce.password=$PASSWORD \
 					--salesforce.clientId=$CLIENT_ID \
-					--salesforce.clientSecret=$CLIENT_SECRET"
+					--salesforce.clientSecret=$CLIENT_SECRET \
+					--url=$URI"
 				}
 			}
 		}
