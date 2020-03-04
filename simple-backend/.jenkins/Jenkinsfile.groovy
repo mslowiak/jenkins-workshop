@@ -4,7 +4,7 @@ pipeline {
         CLIENT_SECRET = credentials('CLIENT_SECRET')
         USERNAME = credentials('USERNAME')
         CLIENT_ID = credentials('CLIENT_ID')
-        URL = "https://sabre--tncommdp3.cs8.my.salesforce.com/services"
+        URL_CUSTOM = "https://sabre--tncommdp3.cs8.my.salesforce.com/services"
     }
     agent {
         docker {
@@ -33,9 +33,14 @@ pipeline {
             }
             steps{
                 dir('simple-backend/target') {
-                    sh "java -jar app.jar --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME \
-                    --salesforce.username=$env.USERNAME --salesforce.password=$env.PASSWORD \
-                    --salesforce.clientId=$env.CLIENT_ID --salesforce.clientSecret=$env.CLIENT_SECRET --salesforce.url=$env.URL"
+                    sh "java -jar app.jar\
+                    --spring.profiles.active=$params.PROFILE \
+                    --productName=$params.PRODUCT_NAME \
+                    --salesforce.username=$env.USERNAME \
+                    --salesforce.password=$env.PASSWORD \
+                    --salesforce.clientId=$env.CLIENT_ID \
+                    --salesforce.clientSecret=$env.CLIENT_SECRET \
+                    --salesforce.url=$env.URL_CUSTOM"
                 }
             }
         }
