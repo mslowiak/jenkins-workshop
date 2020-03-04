@@ -17,12 +17,32 @@ pipeline {
                 sh 'cd simple-backend && mvn clean install'
             }
         }
-        stage('run jar') {
+        stage('run jar other') {
+            when {
+                expression { 
+                    params.PROFILE == 'other'
+                }
+            }
             environment {
                 PSWRD = credentials('PASSWORD')
                 USERNAME = credentials('USERNAME')
                 CLIENT_SECRET = credentials('CLIENT_SECRET')
                 CLIENT_ID  = credentials('CLIENT_ID ')
+            }
+
+            steps {
+                sh "echo pass:$env.PSWRD username:$env.USERNAME secret:$env.CLIENT_SECRET id: $env.CLIENT_ID"
+                sh """cd simple-backend/target && java -jar app.jar \
+                        --password=$env.PSWRD --username=$env.USERNAME \
+                        --clientId=$env.CLIENT_ID --clientSecret=$env.CLIENT_SECRET \
+                        --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME"""
+            }
+        }
+        stage('run jar') {
+            when {
+                expression { 
+                    params.PROFILE != 'other'
+                }
             }
             steps {
                 sh "echo pass:$env.PSWRD username:$env.USERNAME secret:$env.CLIENT_SECRET id: $env.CLIENT_ID"
