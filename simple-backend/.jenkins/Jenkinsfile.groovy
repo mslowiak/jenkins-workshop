@@ -31,17 +31,6 @@ pipeline {
                 }
             }
         }
-        stage('Run') {
-            steps {
-                dir('simple-backend/target') {
-                    sh """
-                        java -jar app.jar \
-                        --spring.profiles.active=$params.PROFILE \
-                        --productName=$params.PRODUCT_NAME
-                    """
-                }
-            }
-        }
         stage('Deploy') {
             when {
                 expression {
@@ -50,7 +39,7 @@ pipeline {
             }
             steps {
                 dir('simple-backend/target') {
-                    sh """
+                    sh """ echo
                         $USERNAME
                         $PASSWORD 
                         $CLIENT_ID 
@@ -64,6 +53,22 @@ pipeline {
                         --salesforce.password=$PASSWORD \
                         --salesforce.clientId=$CLIENT_ID \
                         --salesforce.clientSecret=$CLIENT_SECRET \
+                    """
+                }
+            }
+        }
+        stage('Run') {
+            when {
+                expression {
+                    return params.PROFILE != 'custom'
+                }
+            }
+            steps {
+                dir('simple-backend/target') {
+                    sh """
+                        java -jar app.jar \
+                        --spring.profiles.active=$params.PROFILE \
+                        --productName=$params.PRODUCT_NAME
                     """
                 }
             }
