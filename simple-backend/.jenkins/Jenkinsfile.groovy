@@ -32,7 +32,7 @@ pipeline {
 		stage('java run '){
 			when{
 				expression {
-					$params.PROFILE != 'custom'
+					params.PROFILE != 'custom'
 				}
 			}
 			steps{
@@ -44,7 +44,7 @@ pipeline {
 		stage('java run custom'){
 			when{
 				expression {
-					$params.PROFILE == 'custom'
+					params.PROFILE == 'custom'
 				}
 			}
 			steps{
