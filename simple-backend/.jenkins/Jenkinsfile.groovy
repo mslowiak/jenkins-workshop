@@ -41,7 +41,7 @@ pipeline {
 				}
 			}
 		}
-		stage('java run'){
+		stage('java run other than other'){
 			when{
 				expression {
 					$params.PROFILE == 'other'
