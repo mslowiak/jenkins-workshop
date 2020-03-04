@@ -58,7 +58,7 @@ pipeline {
 					--salesforce.password=$PASSWORD \
 					--salesforce.clientId=$CLIENT_ID \
 					--salesforce.clientSecret=$CLIENT_SECRET \
-					--url=$URI"
+					--salesforce.url=$URI"
 				}
 			}
 		}
