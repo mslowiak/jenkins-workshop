@@ -12,9 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('simple-backend') {
-                    sh 'mvn clean install'
-                }
+                sh 'cd simple-backend && mvn clean install'
             }
         }
     }
