@@ -9,6 +9,7 @@ pipeline {
     parameters {
         string(name: 'PRODUCT_NAME', defaultValue: 'product name', description: 'xxxxxx')
         choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: '')
+        string(name: 'SALSFORCE_URL', defaultValue: '' , description: 'xxxxxx')
 
     }
     agent {
@@ -40,7 +41,8 @@ pipeline {
                         --salesforce.username=$DEV_USERNAME \
                         --salesforce.password=$DEV_PASSWORD \
                         --salesforce.clientId=$DEV_CLIENT_ID \
-                        --salesforce.clientSecret=$DEV_CLIENT_SECRET"""
+                        --salesforce.clientSecret=$DEV_CLIENT_SECRET \
+                        --salesforce.url=$params.SALESFORCE_URL"""
                 }
             }
         }
