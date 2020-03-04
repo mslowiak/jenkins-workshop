@@ -33,8 +33,8 @@ pipeline {
             steps {
                 sh "echo pass:$env.PSWRD username:$env.USERNAME secret:$env.CLIENT_SECRET id: $env.CLIENT_ID"
                 sh """cd simple-backend/target && java -jar app.jar \
-                        --password=$env.PSWRD --username=$env.USERNAME \
-                        --clientId=$env.CLIENT_ID --clientSecret=$env.CLIENT_SECRET \
+                        --salesforce.password=$env.PSWRD --salesforce.username=$env.USERNAME \
+                        --salesforce.clientId=$env.CLIENT_ID --salesforce.clientSecret=$env.CLIENT_SECRET \
                         --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME"""
             }
         }
