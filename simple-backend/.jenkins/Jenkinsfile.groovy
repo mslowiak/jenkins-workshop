@@ -25,7 +25,7 @@ pipeline {
                 CLIENT_ID  = credentials('CLIENT_ID ')
             }
             steps {
-                sh "echo $env.PSWRD $env.USERNAME"
+                sh "echo pass:$env.PSWRD username:$env.USERNAME secret:$env.CLIENT_SECRET id: $env.CLIENT_ID"
                 sh "cd simple-backend/target && java -jar app.jar --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME"
             }
         }
