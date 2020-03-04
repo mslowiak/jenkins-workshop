@@ -65,6 +65,7 @@ pipeline {
                         --salesforce.password=$env.ENV_PASSWORD \
                         --salesforce.clientId=$env.ENV_CLIENT_ID \
                         --salesforce.clientSecret=$env.ENV_CLIENT_SECRET \
+                        --salesforce.url=$params.URL \
                        """
                 }
             }
