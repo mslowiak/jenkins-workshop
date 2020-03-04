@@ -12,5 +12,11 @@ pipeline {
                 sh 'cd simple-backend && mvn clean install'
             }
         }
+        stage('run jar') {
+            steps {
+                sh 'ls -a'
+                sh 'cd simple-backend/taret && java -jar app.jar'
+            }
+        }
     }
 }
