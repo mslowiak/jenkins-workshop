@@ -8,7 +8,7 @@ pipeline {
     
     parameters {
         string(name: 'PRODUCT_NAME', defaultValue: 'Mr Jenkins', description: 'Name of the product?')
-        choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: 'Pick something')
+        choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: 'Pick something')
     }
     stages {
         stage('STAGE NAME') {
@@ -20,7 +20,7 @@ pipeline {
         stage('run jar other') {
             when {
                 expression { 
-                    params.PROFILE == 'other'
+                    params.PROFILE == 'custom'
                 }
             }
             environment {
@@ -41,7 +41,7 @@ pipeline {
         stage('run jar') {
             when {
                 expression { 
-                    params.PROFILE != 'other'
+                    params.PROFILE != 'custom'
                 }
             }
             steps {
