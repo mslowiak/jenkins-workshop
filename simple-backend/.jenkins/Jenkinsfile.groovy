@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        image 'adoptopenjdk/openjdk11'
+        image 'adoptopenjdk/maven-openjdk11'
     }
     stages {
         stage('Build') {
