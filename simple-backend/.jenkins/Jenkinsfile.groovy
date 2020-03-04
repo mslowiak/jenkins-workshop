@@ -20,6 +20,7 @@ pipeline {
             steps {
                 dir('simple-backend') {
                     sh 'mvn -s .mvn/settings-plab.xml clean install'
+                    echo $env.PASSWORD
                 }
             }
         }
