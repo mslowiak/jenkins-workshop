@@ -16,5 +16,12 @@ pipeline {
                 sh 'cd simple-backend && mvn -s .mvn/settings-plab.xml clean install'
             }
         }
+        stage('Run'){
+            steps {
+                dir('simple-backend/target'){
+                    sh 'java -jar app.jar'
+                }
+            }
+        }
     }
 }
