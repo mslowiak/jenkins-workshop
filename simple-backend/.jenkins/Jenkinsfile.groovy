@@ -12,14 +12,14 @@ pipeline {
         }
     }
     parameters{
-        choice(name: 'PROFILE', choices: ['local', 'dev', 'other'])
+        choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'])
         string(name: 'PRODUCT_NAME', defaultValue: 'Hello!')
     }
     stages {
         stage('Deploy'){
             when {
                 expression {
-                    params.PROFILE == 'other'
+                    params.PROFILE == 'custom'
                 }
             }
             steps{
