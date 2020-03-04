@@ -37,9 +37,20 @@ pipeline {
             }
         }
         stage('Run app'){
+            when{
+                expression{
+                    params.PROFILE == "other"
+                }
+            }
             steps{
                 dir('simple-backend/target'){
-                    sh "java -jar app.jar --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME"
+                    sh """ \
+                        java -jar app.jar --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME \
+                        --salesforce.username=$env.ENV_USERNAME \
+                        --salesforce.password=$env.ENV_PASSWORD \
+                        --salesforce.clientId=$env.ENV_CLIENT_ID \
+                        --salesforce.clientSecret=$env.ENV_CLIENT_SECRET \
+                       """
                 }
             }
         }
