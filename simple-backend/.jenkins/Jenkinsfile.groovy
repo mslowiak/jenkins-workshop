@@ -13,5 +13,12 @@ pipeline {
                 }
             }
         }
+        stage('Run'){
+            steps{
+                dir('simple-backend/target'){
+                    sh 'java -jar app.jar'
+                }
+            }
+        }
     }
 }
