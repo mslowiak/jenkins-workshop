@@ -23,7 +23,7 @@ pipeline {
                 }
             }
             steps{
-                sh "--salesforce.username=$env.USERNAME --salesforce.password=$env.PASSWORD \
+                sh "java -jar app.jar --salesforce.username=$env.USERNAME --salesforce.password=$env.PASSWORD \
                     --salesforce.clientId=$env.CLIENT_ID --salesforce.clientSecret=$env.CLIENT_SECRET"
             }
         }
@@ -36,6 +36,11 @@ pipeline {
             }
         }
         stage('Run'){
+            when {
+                expression {
+                    params.PROFILE != 'custom'
+                }
+            }
             steps{
                 dir('simple-backend/target'){
                     sh "java -jar app.jar --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME"
