@@ -2,7 +2,7 @@ pipeline {
     parameters {
         choice(
                 name: 'PROFILE',
-                choices: ['local', 'dev', 'other'],
+                choices: ['local', 'dev', 'custom'],
                 description: ''
         )
         string(
@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    return params.PROFILE == 'other'
+                    return params.PROFILE == 'custom'
                 }
             }
             steps {
