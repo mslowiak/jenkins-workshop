@@ -1,4 +1,9 @@
 pipeline {
+    parameters {
+        string(name: 'PRODUCT_NAME', defaultValue: 'staging', description: '')
+        choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: '')
+
+    }
     agent {
         docker {
             image 'adoptopenjdk/maven-openjdk11'
