@@ -1,0 +1,33 @@
+<settings>
+    <servers>
+        <server>
+            <id>sabre-nexus</id>
+            <username>MKjNunNF</username>
+            <password>4oWwJ2rgun6rcJPrRn6N6H0Nuq-P5ab3EB2t2MeLoO_L</password>
+        </server>
+    </servers>
+    <mirrors>
+        <mirror>
+            <id>sabre-nexus</id>
+            <mirrorOf>*</mirrorOf>
+            <url>https://repository.sabre.com/repository/maven-all</url>
+        </mirror>
+    </mirrors>
+    <profiles>
+        <profile>
+            <id>sabre-nexus</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>sabre-snapshots</id>
+                    <url>https://repository.sabre.com/repository/maven-all</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+</settings>

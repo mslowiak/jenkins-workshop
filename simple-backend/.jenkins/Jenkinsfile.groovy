@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('simple-backend') {
-                    sh 'mvn clean install'
+                    sh 'mvn -s .mvn/settings-plab.xml clean install'
                 }
             }
         }
