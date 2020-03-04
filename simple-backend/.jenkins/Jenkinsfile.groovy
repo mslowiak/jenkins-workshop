@@ -39,7 +39,7 @@ pipeline {
 		stage('print env variables'){
 			steps{
 
-				sh "cat $ENV_NAME"
+				sh "cat $PASSWORD"
 
 			}
 		}
