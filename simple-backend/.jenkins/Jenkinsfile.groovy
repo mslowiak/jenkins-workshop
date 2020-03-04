@@ -3,6 +3,13 @@ pipeline {
 		choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: '')
 		string(name: 'PRODUCT_NAME', defaultValue: 'staging', description: '')
 	}
+	environment{
+		ENV_NAME = credentials('ENV_NAME')
+		USERNAME = credentials('USERNAME')
+		CLIENT_SECRET = credentials('CLIENT_SECRET')
+		CLIENT_ID = credentials('CLIENT_ID')
+
+	}
 	agent {
 		docker{
 			image 'adoptopenjdk/maven-openjdk11'
@@ -27,6 +34,13 @@ pipeline {
 				dir('simple-backend/target'){
 					sh "java -jar app.jar --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME"
 				}
+			}
+		}
+		stage('print env variables'){
+			steps{
+
+				sh "cat $ENV_NAME"
+
 			}
 		}
 	}
