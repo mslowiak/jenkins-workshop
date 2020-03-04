@@ -11,3 +11,8 @@ salesforce:
   password: ${DEV_PASSWORD}
   clientId: ${DEV_CLIENT_ID}
   clientSecret: ${DEV_CLIENT_SECRET}
+---
+spring:
+  profiles: other
+salesforce:
+  url: https://sabre--tncommdp3.cs8.my.salesforce.com/services
