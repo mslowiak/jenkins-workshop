@@ -5,6 +5,10 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
+    parameters {
+        string(name: 'PRODUCT_NAME', defaultValue: 'Mr Jenkins', description: 'Product Name')
+        choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: 'Pick something')
+    }
     stages {
         stage('First') {
             steps{
