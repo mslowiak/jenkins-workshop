@@ -3,9 +3,12 @@ pipeline {
         image 'adoptopenjdk/openjdk11'
     }
     stages {
-        stage('maven install'){
-            sh "cd .."
-            sh "maven clean install"
+        stage('Build') {
+            steps {
+                dir('simple-backend') {
+                    sh 'mvn clean install'
+                }
+            }
         }
     }
 }
