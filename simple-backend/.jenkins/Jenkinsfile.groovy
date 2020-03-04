@@ -6,7 +6,8 @@ pipeline {
         }
     }
     parameters{
-        choice(name: 'CHOICE', choices: ['local', 'dev'])
+        choice(name: 'PROFILE', choices: ['local', 'dev', 'other'])
+        string(name: 'PRODUCT_NAME', defaultValue: 'Hello!')
     }
     stages {
         stage('Build') {
