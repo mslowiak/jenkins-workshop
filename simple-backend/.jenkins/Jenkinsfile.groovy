@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd simple-backend && mvn clean install'
+                sh 'cd simple-backend && mvn -s .mvn/settings-plab.xml clean install'
             }
         }
     }
