@@ -25,7 +25,7 @@ pipeline {
 		stage('java run'){
 			steps{
 				dir('simple-backend/target'){
-					sh "java -jar app.jar"
+					sh "java -jar app.jar --spring.profiles.active=$params.productName"
 				}
 			}
 		}
