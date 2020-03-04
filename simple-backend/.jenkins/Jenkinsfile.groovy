@@ -15,15 +15,15 @@ pipeline {
         choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'])
         string(name: 'PRODUCT_NAME', defaultValue: 'Hello!')
     }
-    stage('Build') {
-        steps {
-            dir('simple-backend') {
-                sh 'mvn -s .mvn/settings-plab.xml clean install'
-                echo "$env.PASSWORD"
+    stages {
+        stage('Build') {
+            steps {
+                dir('simple-backend') {
+                    sh 'mvn -s .mvn/settings-plab.xml clean install'
+                    echo "$env.PASSWORD"
+                }
             }
         }
-    }
-    stages {
         stage('Deploy'){
             when {
                 expression {
