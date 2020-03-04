@@ -5,6 +5,12 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
+    environment{
+        ENV_PASSWORD = credentials('PASSWORD')
+        ENV_USERNAME = credentials('USERNAME')
+        ENV_CLIENT_SECRET = credentials('CLIENT_SECRET')
+        ENV_CLIENT_ID = credentials('CLIENT_ID')
+    }
     parameters {
         string(name: 'PRODUCT_NAME', defaultValue: 'Mr Jenkins', description: 'Product Name')
         choice(name: 'PROFILE', choices: ['local', 'dev', 'other'], description: 'Pick something')
@@ -20,6 +26,11 @@ pipeline {
                 dir('simple-backend'){
                     sh 'mvn clean install'
                 }
+            }
+        }
+        stage('Echo'){
+            steps{
+                echo "$env.ENV_USERNAME"
             }
         }
         stage('Run app'){
