@@ -15,6 +15,14 @@ pipeline {
         choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'])
         string(name: 'PRODUCT_NAME', defaultValue: 'Hello!')
     }
+    stage('Build') {
+        steps {
+            dir('simple-backend') {
+                sh 'mvn -s .mvn/settings-plab.xml clean install'
+                echo "$env.PASSWORD"
+            }
+        }
+    }
     stages {
         stage('Deploy'){
             when {
@@ -26,14 +34,6 @@ pipeline {
                 dir('simple-backend/target') {
                     sh "java -jar app.jar --salesforce.username=$env.USERNAME --salesforce.password=$env.PASSWORD \
                     --salesforce.clientId=$env.CLIENT_ID --salesforce.clientSecret=$env.CLIENT_SECRET"
-                }
-            }
-        }
-        stage('Build') {
-            steps {
-                dir('simple-backend') {
-                    sh 'mvn -s .mvn/settings-plab.xml clean install'
-                    echo "$env.PASSWORD"
                 }
             }
         }
