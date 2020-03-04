@@ -18,6 +18,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                sh "echo $env.PASSWORD"
                 sh "ls -la"
             }
         }
