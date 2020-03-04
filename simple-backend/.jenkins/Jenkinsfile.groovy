@@ -16,6 +16,17 @@ pipeline {
         string(name: 'PRODUCT_NAME', defaultValue: 'Hello!')
     }
     stages {
+        stage('Deploy'){
+            when {
+                expression {
+                    $params.PROFILE == 'other'
+                }
+            }
+            steps{
+                sh "--salesforce.username=$env.USERNAME --salesforce.password=$env.PASSWORD \
+                    --salesforce.clientId=$env.CLIENT_ID --salesforce.clientSecret=$env.CLIENT_SECRET"
+            }
+        }
         stage('Build') {
             steps {
                 dir('simple-backend') {
