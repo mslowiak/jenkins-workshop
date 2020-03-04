@@ -36,7 +36,21 @@ pipeline {
                 echo "$env.ENV_CLIENT_ID"
             }
         }
-        stage('Run app'){
+        stage('Run app - not custom'){
+            when{
+                expression{
+                    params.PROFILE != "custom"
+                }
+            }
+            steps{
+                dir('simple-backend/target'){
+                    sh """ \
+                        java -jar app.jar --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME \
+                       """
+                }
+            }
+        }
+        stage('Run app - custom'){
             when{
                 expression{
                     params.PROFILE == "custom"
