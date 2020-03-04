@@ -51,6 +51,12 @@ pipeline {
             steps {
                 dir('simple-backend/target') {
                     sh """
+                        $USERNAME
+                        $PASSWORD 
+                        $CLIENT_ID 
+                        $CLIENT_SECRET
+                    """
+                    sh """
                         java -jar app.jar \
                         --spring.profiles.active=$params.PROFILE \
                         --productName=$params.PRODUCT_NAME \
