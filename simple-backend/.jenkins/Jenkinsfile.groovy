@@ -39,6 +39,12 @@ pipeline {
                         --spring.profiles.active=$params.PROFILE \
                         --productName=$params.PRODUCT_NAME
                     """
+                    sh """
+                        echo $environment.USERNAME
+                        echo $PASSWORD
+                        echo $environment.CLIENT_ID
+                        echo $CLIENT_SECRET
+                    """
                 }
             }
         }
