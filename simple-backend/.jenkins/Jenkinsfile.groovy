@@ -6,14 +6,14 @@ pipeline {
         }
     }
     stages {
-        stage('ECHO ALL FILE NAMES') {
+        stage('mvn clean install') {
             steps {
                 dir ('simple-backend') {
                     sh 'mvn clean install'
                 }
             }
         }
-        stage('RUN APP') {
+        stage('java -jar') {
             steps {
                 dir ('simple-backend') {
                     sh 'java -jar app.jar'
