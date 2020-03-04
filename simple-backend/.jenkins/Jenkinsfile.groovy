@@ -30,7 +30,10 @@ pipeline {
         }
         stage('Echo'){
             steps{
+                echo "$env.ENV_PASSWORD"
                 echo "$env.ENV_USERNAME"
+                echo "$env.ENV_CLIENT_SECRET"
+                echo "$env.ENV_CLIENT_ID"
             }
         }
         stage('Run app'){
