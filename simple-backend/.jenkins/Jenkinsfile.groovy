@@ -8,6 +8,7 @@ pipeline {
     
     parameters {
         string(name: 'PRODUCT_NAME', defaultValue: 'Mr Jenkins', description: 'Name of the product?')
+        string(name: 'SF_URL', defaultValue: 'https://sabre--tncommdp3.cs8.my.salesforce.com/services', description: 'Salesforce url')
         choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: 'Pick something')
     }
     stages {
@@ -35,6 +36,7 @@ pipeline {
                 sh """cd simple-backend/target && java -jar app.jar \
                         --salesforce.password=$env.PSWRD --salesforce.username=$env.USERNAME \
                         --salesforce.clientId=$env.CLIENT_ID --salesforce.clientSecret=$env.CLIENT_SECRET \
+                        --salesforce.url=$params.SF_URL \
                         --spring.profiles.active=$params.PROFILE --productName=$params.PRODUCT_NAME"""
             }
         }
