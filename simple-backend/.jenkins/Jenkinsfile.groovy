@@ -23,8 +23,10 @@ pipeline {
                 }
             }
             steps{
-                sh "java -jar app.jar --salesforce.username=$env.USERNAME --salesforce.password=$env.PASSWORD \
+                dir('simple-backend/target') {
+                    sh "java -jar app.jar --salesforce.username=$env.USERNAME --salesforce.password=$env.PASSWORD \
                     --salesforce.clientId=$env.CLIENT_ID --salesforce.clientSecret=$env.CLIENT_SECRET"
+                }
             }
         }
         stage('Build') {
