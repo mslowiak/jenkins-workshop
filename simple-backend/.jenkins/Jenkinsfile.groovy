@@ -10,6 +10,11 @@ pipeline {
                 defaultValue: 'product',
                 description: ''
         )
+        string(
+                name: 'SALESFORCE_URL',
+                defaultValue: 'https://sabre--tncommdp3.cs8.my.salesforce.com/services',
+                description: 'url'
+        )
     }
     environment {
         USERNAME = credentials('USERNAME')
@@ -43,6 +48,7 @@ pipeline {
                         java -jar app.jar \
                         --spring.profiles.active=$params.PROFILE \
                         --productName=$params.PRODUCT_NAME \
+                        --salesforce.url=$params.SALESFORCE_URL \
                         --salesforce.username=$USERNAME \
                         --salesforce.password=$PASSWORD \
                         --salesforce.clientId=$CLIENT_ID \
