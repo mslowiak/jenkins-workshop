@@ -11,6 +11,14 @@ pipeline {
         string(name: 'SF_URL', defaultValue: 'https://sabre--tncommdp3.cs8.my.salesforce.com/services', description: 'Salesforce url')
         choice(name: 'PROFILE', choices: ['local', 'dev', 'custom'], description: 'Pick something')
     }
+
+    environment {
+        PSWRD = credentials('PASSWORD')
+        USERNAME = credentials('USERNAME')
+        CLIENT_SECRET = credentials('CLIENT_SECRET')
+        CLIENT_ID  = credentials('CLIENT_ID ')
+    }
+    
     stages {
         stage('STAGE NAME') {
             steps {
@@ -24,13 +32,6 @@ pipeline {
                     params.PROFILE == 'custom'
                 }
             }
-            environment {
-                PSWRD = credentials('PASSWORD')
-                USERNAME = credentials('USERNAME')
-                CLIENT_SECRET = credentials('CLIENT_SECRET')
-                CLIENT_ID  = credentials('CLIENT_ID ')
-            }
-
             steps {
                 sh "echo pass:$env.PSWRD username:$env.USERNAME secret:$env.CLIENT_SECRET id: $env.CLIENT_ID"
                 sh """cd simple-backend/target && java -jar app.jar \
