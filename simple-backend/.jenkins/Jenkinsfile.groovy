@@ -15,7 +15,7 @@ pipeline {
         }
         stage('java -jar') {
             steps {
-                dir ('simple-backend') {
+                dir ('simple-backend/target') {
                     sh 'java -jar app.jar'
                 }
             }
