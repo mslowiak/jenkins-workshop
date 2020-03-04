@@ -1,4 +1,10 @@
 pipeline {
+    environment{
+        PASSWORD = credentials('PASSWORD')
+        CLIENT_SECRET = credentials('CLIENT_SECRET')
+        USERNAME = credentials('USERNAME')
+        CLIENT_ID = credentials('CLIENT_ID')
+    }
     agent {
         docker {
             image 'adoptopenjdk/maven-openjdk11'
