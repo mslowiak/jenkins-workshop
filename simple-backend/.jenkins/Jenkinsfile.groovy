@@ -6,7 +6,7 @@ pipeline {
         }
     }
     parameters {
-        choice(name: 'profile', choices: ['dev'])
+        choice(name: 'profile', choices: ['dev','local'])
         string(name: 'url', defaultValue: 'http://07b8c8896d9a.ngrok.io')
     }
 
