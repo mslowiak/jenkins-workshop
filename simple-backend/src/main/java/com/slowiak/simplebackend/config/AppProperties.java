@@ -8,11 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 @Setter
-@ConfigurationProperties("salesforce")
-public class SalesforceProperties {
+@ConfigurationProperties("service")
+public class AppProperties {
     private String url;
-    private String username;
-    private String password;
-    private String clientId;
-    private String clientSecret;
 }

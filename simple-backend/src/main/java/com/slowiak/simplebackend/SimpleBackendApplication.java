@@ -15,10 +15,10 @@ public class SimpleBackendApplication {
 
         try (context) {
             Connector connector = context.getBean(Connector.class);
-            String productName = context.getEnvironment().getProperty("productName");
-            connector.getOrderItemPccByProductName(productName)
-                    .doOnNext(orderItemPcc -> log.info("ORDER_ITEM_PCC: " + orderItemPcc.getId() + " -> " + orderItemPcc.getProductName() + " -> " + orderItemPcc.getPcc()))
-                    .blockFirst();
+            String productName = context.getEnvironment().getProperty("name");
+            String returnedMessage = connector.getMessage(productName)
+                    .block();
+            log.info(returnedMessage);
         }
     }
 

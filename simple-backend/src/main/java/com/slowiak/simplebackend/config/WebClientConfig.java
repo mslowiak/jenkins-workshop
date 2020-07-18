@@ -10,12 +10,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 public class WebClientConfig {
 
-    private final SalesforceProperties salesforceProperties;
+    private final AppProperties appProperties;
 
     @Bean
     WebClient webClient() {
         return WebClient.builder()
-                .baseUrl(salesforceProperties.getUrl())
+                .baseUrl(appProperties.getUrl())
                 .build();
     }
 }
