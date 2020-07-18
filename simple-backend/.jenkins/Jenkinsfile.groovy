@@ -5,7 +5,7 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
-    parameter {
+    parameters {
         choice(name: 'profile', choices: ['dev'])
         string(name: 'url', defaultValue: 'http://07b8c8896d9a.ngrok.io')
     }
