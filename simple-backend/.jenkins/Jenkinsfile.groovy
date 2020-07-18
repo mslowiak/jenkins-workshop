@@ -8,7 +8,7 @@ pipeline {
         stage('FIRST STAGE'){
             steps {
                 sh 'echo "fobar"'
-                sh 'cd simple-backend & mvn clean install'
+                sh 'cd simple-backend && mvn clean install'
             }
         }
     }
