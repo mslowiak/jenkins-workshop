@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('FIRST STAGE'){
             steps {
-                sh 'cat "fobar"'
+                sh 'echo "fobar"'
             }
         }
     }
