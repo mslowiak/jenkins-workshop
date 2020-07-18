@@ -8,7 +8,7 @@ pipeline {
         stage('FIRST STAGE'){
             steps {
                 sh 'echo "fobar"'
-                sh 'maven clean install'
+                sh 'mvn clean install'
             }
         }
     }
