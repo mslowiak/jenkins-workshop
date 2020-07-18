@@ -8,6 +8,7 @@ pipeline {
         stage('LIST FILES') {
             steps {
                 sh 'ls -al'
+                sh 'pwd'
                 sh 'mvn clean install'
             }
         }
