@@ -1,12 +1,18 @@
 pipeline {
-    agent any
-        stages{
-            stage('STAGE 1'){
-                steps{
-                    sh 'ls -al'
+    agent {
+        docker {
+            image 'adoptopenjdk/maven-openjdk11'
+
+        }
+        stages {
+            stage('FIRST STAGE') {
+                steps {
+                    sh 'mvn clean install'
                 }
             }
         }
 
-
+    }
 }
+
+
