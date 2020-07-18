@@ -14,7 +14,7 @@ pipeline {
         stage('Start') {
             steps {
                 dir('simple-backend/target') {
-                    sh "java -jar app.jar --spring.profiles.active=${params.profile}"
+                    sh "java -jar app.jar --spring.profiles.active=${params.PROFILE}"
                 }
             }
         }
@@ -22,7 +22,6 @@ pipeline {
     }
     parameters{
         choice(name: 'PROFILE', choices: ['dev','local'])
-        string(name: 'URL', defaultValue: 'http://07b8c8896d9a.ngrok.io')
     }
 
     environment{
