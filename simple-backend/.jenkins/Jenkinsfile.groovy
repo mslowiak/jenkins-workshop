@@ -20,6 +20,11 @@ pipeline {
         }
 
     }
+    parameters{
+        choice(name:'PROFILES', profiles['dev', 'local'])
+        string(name: 'url', defaultValue: 'http://07b8c8896d9a.ngrok.io')
+        
+    }
 
 }
 
