@@ -4,6 +4,7 @@ pipeline {
             image 'adoptopenjdk/maven-openjdk11'
 
         }
+    }
         stages {
             stage('FIRST STAGE') {
                 steps {
@@ -12,7 +13,7 @@ pipeline {
             }
         }
 
-    }
+
 }
 
 
