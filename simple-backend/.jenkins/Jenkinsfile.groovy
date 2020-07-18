@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh 'ls -al'
                 sh 'pwd'
-                sh 'mvn clean install'
+                sh 'cd simple-backend && mvn clean install'
             }
         }
     }
