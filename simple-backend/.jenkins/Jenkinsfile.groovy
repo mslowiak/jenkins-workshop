@@ -5,6 +5,11 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
+    parameter {
+        choice(name: 'profile', choices: ['dev'])
+        string(name: 'url', defaultValue: 'http://07b8c8896d9a.ngrok.io')
+    }
+
     stages {
         stage('LIST FILES') {
             steps {
@@ -22,7 +27,7 @@ pipeline {
         stage('RUN') {
             steps {
                 dir('simple-backend/target') {
-                    sh 'java -jar app.jar --spring.profiles.active=dev --service.url=http://07b8c8896d9a.ngrok.io'
+                    sh 'java -jar app.jar --spring.profiles.active=profile --service.url=url'
                 }
             }
         }
