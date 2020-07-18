@@ -6,10 +6,15 @@ pipeline {
         }
     }
     stages {
-        stage('FIRST STAGE'){
+        stage('BUILD'){
             steps {
                 sh 'echo "fobar"'
                 sh 'cd simple-backend && mvn clean install'
+            }
+        }
+        stage('RUN'){
+            steps{
+                sh'cd simple-backend/target && java -jar app.jar'
             }
         }
     }
