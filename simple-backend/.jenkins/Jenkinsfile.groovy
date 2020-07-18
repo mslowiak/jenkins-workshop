@@ -25,6 +25,10 @@ pipeline {
         string(name: 'URL', defaultValue: 'http://07b8c8896d9a.ngrok.io')
     }
 
+    environment{
+        DEV_URL=credentials('url')
+    }
+
 }
 
 
