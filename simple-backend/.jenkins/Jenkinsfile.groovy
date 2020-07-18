@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Start') {
             steps {
-                sh 'cd simple-backend/target &&  java -jar app.jar'
+                sh 'cd simple-backend/target &&  java -jar --spring.profiles.active=dev && --service.url=http://07b8c8896d9a.ngrok.io'
             }
         }
     }
