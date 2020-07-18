@@ -6,11 +6,15 @@ pipeline {
         }
     }
         stages {
-            stage('FIRST STAGE') {
+            stage('Build') {
                 steps {
                     sh 'cd simple-backend && mvn clean install'
                 }
             }
+            stage ('Start')
+                steps{
+                    sh 'cd simple backend/target &&  java -jar app.jar'
+                }
         }
 
 
