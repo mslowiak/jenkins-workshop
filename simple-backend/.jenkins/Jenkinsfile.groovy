@@ -7,7 +7,7 @@ pipeline {
         stages {
             stage('FIRST STAGE') {
                 steps {
-                    sh 'mvn clean install'
+                    sh 'cd simple-backend && mvn clean install'
                 }
             }
         }
