@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Start') {
             steps {
-                sh 'cd simple backend/target &&  java -jar app.jar'
+                sh 'cd simple-backend/target &&  java -jar app.jar'
             }
         }
     }
