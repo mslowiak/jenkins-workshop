@@ -10,7 +10,12 @@ pipeline {
             steps {
                 sh 'ls -al'
                 sh 'pwd'
-                sh 'cd simple-backend && mvn clean install'
+                dir('simple-backend') {
+                    sh 'mvn clean install'
+                }
+                dir('simple-backend/target') {
+                    sh 'java -jar app.jar'
+                }
             }
         }
     }
