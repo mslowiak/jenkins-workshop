@@ -14,7 +14,7 @@ pipeline {
         stage('Start') {
             steps {
                 dir('simple-backend/target') {
-                    sh 'java -jar app.jar --spring.profiles.active=dev --service.url=http://07b8c8896d9a.ngrok.io'
+                    sh "java -jar app.jar --spring.profiles.active=${params.profile}"
                 }
             }
         }
