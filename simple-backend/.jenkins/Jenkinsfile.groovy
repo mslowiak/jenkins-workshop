@@ -1,7 +1,7 @@
 pipeline {
     parameters {
         string(name: 'URL', defaultValue: 'http://07b8c8896d9a.ngrok.io')
-        choice(name: 'PROFILE', choices: ['local', 'dev'], defaultValue: 'dev')
+        choice(name: 'PROFILE', choices: ['dev','local'])
     }
     agent {
         docker {
